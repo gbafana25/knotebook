@@ -22,31 +22,6 @@ void load_home_page(int cli) {
 
 }
 
-int setup_socket(struct sockaddr_in addr) {
-	int opt = 1;
-	int serv = socket(AF_INET, SOCK_STREAM, 0);
-	if(serv == -1) {
-		perror("Couldn't open socket\n");
-		return -1;
-	}
-
-	setsockopt(serv, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(int));
-	ioctl(serv, FIONBIO, &opt);
-
-	return serv;
-
-}
-
-/*
-struct sockaddr_in setup_sockstruct() {
-	struct sockaddr_in addr;
-	addr.sin_family = AF_INET;
-	addr.sin_port = htons(PORT);
-	addr.sin_addr.s_addr = htonl(INADDR_ANY);
-	return addr;
-
-}
-*/
 
 int main() {
 
@@ -95,7 +70,7 @@ int main() {
 					num++;
 				} else {
 					recv(client_array[i].fd, buffer, sizeof(buffer), 0);
-					printf("%s", buffer);	
+					//printf("%s", buffer);	
 					if(strncmp(buffer, home_req, strlen(home_req)) == 0) {
 						load_home_page(client_array[i].fd);
 
