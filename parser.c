@@ -3,7 +3,9 @@
 #include <string.h>
 #include <stdbool.h>
 
-void get_value(char *s, int pos) {
+#include "data_structs.h"
+
+char *get_value(char *s, int pos) {
 	pos += 5;
 	int len = 0;
 	for(int i = pos; i < strlen(s) - 1; i++) {
@@ -15,19 +17,23 @@ void get_value(char *s, int pos) {
 	}
 	char *val = malloc(sizeof(char) * len);
 	strncpy(val, s+pos, len);
-	printf("%s\n", val);
+	return val;
 
 }
 
-void parse_request(char *req) {
+void parse_request(char *req, entry info) {
 	for(int i = 0; i < strlen(req); i++) {
 		if(strncmp(&req[i], "name=", 5) == 0) {
 			printf("found name\n");
-			//printf("%c\n", req[i+5]);
-			get_value(req, i);
+			info.name = get_value(req, i);
+			printf("%s\n", info.name);
 		} else if(strncmp(&req[i], "lang=", 5) == 0) {
 			printf("found language\n");
-			get_value(req, i);
+			info.language = get_value(req, i);
+			printf("%s\n", info.language);
+		} else if(strncmp(&req[i], "code=", 5) == 0) {
+			info.code = get_value(req, i);
+			printf("%s\n", info.code);
 		}
 	}
 

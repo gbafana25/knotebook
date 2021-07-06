@@ -1,1 +1,1 @@
-void parse_request(char *req);
+void parse_request(char *req, entry info);

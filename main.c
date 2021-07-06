@@ -75,10 +75,8 @@ int main() {
 						load_home_page(client_array[i].fd);
 
 					} else if(strncmp(buffer, add_prog, strlen(add_prog)) == 0) {
-						//entry e;
-						parse_request(buffer);
-						//printf("%s\n", (const char *) &e.name);
-						//memset(&e, 0, sizeof(e));
+						entry e;
+						parse_request(buffer, e);
 					
 					}
 					memset(&buffer, 0, sizeof(buffer));

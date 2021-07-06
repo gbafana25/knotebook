@@ -23,35 +23,3 @@ void init_db() {
 }
 
 
-char *get_name(char *buf) {
-	int size = 0;
-	while(buf[size] != '#') {
-		size++;
-
-	}
-	char *var = malloc(sizeof(char) * size);
-	strncpy(var, buf, size);
-	return var;	
-
-} 
-
-void parse_input(char *buf, entry e) {
-	memset(&e.name, 0, sizeof(e.name));
-	memset(&e.language, 0, sizeof(e.language));
-	int el_num = 0;
-	for(int i = 0; i < strlen(buf); i++) {
-		if(&buf[i] == '#') {
-			char *s = get_name(buf); 
-			if(el_num == 0) {
-				e.name = s;
-				el_num++;
-			} else if(el_num == 1) {
-				e.language = s;
-				el_num++;
-			}	
-		}
-
-	}
-
-
-} 
