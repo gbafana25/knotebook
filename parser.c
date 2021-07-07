@@ -32,7 +32,7 @@ void parse_request(char *req, entry info) {
 			info.language = get_value(req, i);
 			printf("%s\n", info.language);
 		} else if(strncmp(&req[i], "code=", 5) == 0) {
-			info.code = get_value(req, i);
+			info.code = get_value(req, i+1);	// have to increment i by 1 to avoid including quotation
 			printf("%s\n", info.code);
 		}
 	}
