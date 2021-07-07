@@ -13,8 +13,7 @@ void write_db(database db, entry en) {
 
 } 
 
-void init_db() {
-	database db;
+void init_db(database db) {
 	db.size = MAX_ENTRIES;
 	db.buf = malloc(sizeof(entry) * db.size);
 		

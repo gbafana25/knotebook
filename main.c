@@ -15,17 +15,10 @@
 #define PORT 1234
 #define MAX_CLIENTS 10
 
-void load_home_page(int cli) {
-	char *msg = "Temp. home page\n";
-	send(cli, msg, strlen(msg), 0);
-	close(cli);
-
-}
 
 
 int main() {
 
-	char home_req[] = "GET /home";
 	char add_prog[] = "POST /create";
 
 	int sock_opt = 1;
@@ -40,18 +33,8 @@ int main() {
 	char buffer[1024];
 	memset(&buffer, 0, sizeof(buffer));
 	struct pollfd client_array[client_num];
-
 	
-	if(bind(serv, (struct sockaddr *) &serv_addr, sizeof(serv_addr)) == -1) {
-
-		perror("Couldn't bind socket\n");
-		return -1;
-	}
-	
-	if(listen(serv, 4)) {
-		perror("Couldn't listen on server socket\n");
-		return -1;
-	}
+	start_socket(serv, serv_addr);
 
 	memset(&client_array, 0, sizeof(client_array));
 	client_array[0].fd = serv;
@@ -71,10 +54,7 @@ int main() {
 				} else {
 					recv(client_array[i].fd, buffer, sizeof(buffer), 0);
 					//printf("%s", buffer);	
-					if(strncmp(buffer, home_req, strlen(home_req)) == 0) {
-						load_home_page(client_array[i].fd);
-
-					} else if(strncmp(buffer, add_prog, strlen(add_prog)) == 0) {
+					if(strncmp(buffer, add_prog, strlen(add_prog)) == 0) {
 						entry e;
 						parse_request(buffer, e);
 					

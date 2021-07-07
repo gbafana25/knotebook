@@ -30,3 +30,21 @@ struct sockaddr_in setup_sockstruct() {
 	return addr;
 }
 
+int start_socket(int server, struct sockaddr_in addr) {
+
+	if(bind(server, (struct sockaddr *) &addr, sizeof(addr)) == -1) {
+
+		perror("Couldn't bind socket\n");
+		return -1;
+	}
+	
+	if(listen(server, 4)) {
+		perror("Couldn't listen on server socket\n");
+		return -1;
+	}
+
+	return 0;
+
+
+}
+
