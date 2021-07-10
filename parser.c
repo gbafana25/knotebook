@@ -21,20 +21,20 @@ char *get_value(char *s, int pos) {
 
 }
 
-void parse_request(char *req, entry info) {
+entry *parse_request(char *req) {
+	entry *info;
 	for(int i = 0; i < strlen(req); i++) {
 		if(strncmp(&req[i], "name=", 5) == 0) {
-			printf("found name\n");
-			info.name = get_value(req, i);
-			printf("%s\n", info.name);
+			strcpy(info->name, get_value(req, i));
+			printf("%s\n", info->name);
 		} else if(strncmp(&req[i], "lang=", 5) == 0) {
-			printf("found language\n");
-			info.language = get_value(req, i);
-			printf("%s\n", info.language);
+			strcpy(info->language, get_value(req, i));
+			printf("%s\n", info->language);
 		} else if(strncmp(&req[i], "code=", 5) == 0) {
-			info.code = get_value(req, i+1);	// have to increment i by 1 to avoid including quotation
-			printf("%s\n", info.code);
+			strcpy(info->code, get_value(req, i));	
+			printf("%s\n", info->code);
 		}
 	}
+	return info;
 
 }

@@ -4,21 +4,20 @@
 
 #include "data_structs.h"
 
-#define MAX_ENTRIES 8
+#define MAX_ENTRIES 18
 #define DB_FILE "code.db"
 
-void write_db(database db, entry en) {
-	db.fd = fopen(DB_FILE, "ab+");	
-	fwrite((void *) &en, sizeof(entry), 1, db.fd);
+void write_db(database db, entry *en) {
+	fwrite((void *) &en, sizeof(en), 1, db.fd);
 
 } 
 
 void init_db(database db) {
-	db.size = MAX_ENTRIES;
-	db.buf = malloc(sizeof(entry) * db.size);
+	//db.fd = fopen(DB_FILE, "ab+");	
+	db.entry_num = MAX_ENTRIES;
+	db.buf = malloc(sizeof(entry) * db.entry_num);
 		
 
 
 }
-
 

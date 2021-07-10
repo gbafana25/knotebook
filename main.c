@@ -41,6 +41,8 @@ int main() {
 	client_array[0].events = POLLIN;
 
 	while(1) {
+		database store;
+		init_db(store);
 		poll(client_array, client_num, -1);
 		for(int i = 0; i < client_num; i++) {
 			if(client_array[i].revents&POLLIN) {
@@ -55,8 +57,11 @@ int main() {
 					recv(client_array[i].fd, buffer, sizeof(buffer), 0);
 					//printf("%s", buffer);	
 					if(strncmp(buffer, add_prog, strlen(add_prog)) == 0) {
-						entry e;
-						parse_request(buffer, e);
+						entry *e = parse_request(buffer);
+						//write_db(store, e);
+						store.fd = fopen("code.db", "ab+");
+						fwrite(e, sizeof(entry), 1, store.fd);
+						fclose(store.fd);
 					
 					}
 					memset(&buffer, 0, sizeof(buffer));
