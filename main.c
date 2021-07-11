@@ -58,10 +58,8 @@ int main() {
 					//printf("%s", buffer);	
 					if(strncmp(buffer, add_prog, strlen(add_prog)) == 0) {
 						entry *e = parse_request(buffer);
-						//write_db(store, e);
-						store.fd = fopen("code.db", "ab+");
-						fwrite(e, sizeof(entry), 1, store.fd);
-						fclose(store.fd);
+						write_db(store, e);
+						read_db(store);
 					
 					}
 					memset(&buffer, 0, sizeof(buffer));
@@ -72,5 +70,6 @@ int main() {
 		}
 
 	}
+	
 
 }

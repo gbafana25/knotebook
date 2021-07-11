@@ -8,16 +8,25 @@
 #define DB_FILE "code.db"
 
 void write_db(database db, entry *en) {
-	fwrite((void *) &en, sizeof(en), 1, db.fd);
+	db.fd = fopen(DB_FILE, "ab+");
+	fwrite(en, sizeof(entry), 1, db.fd);
+	fclose(db.fd);
 
 } 
 
+void read_db(database db) {
+	entry in;
+	db.fd = fopen(DB_FILE, "rb");
+	while(fread(&in, sizeof(entry), 1, db.fd)) {
+		printf("%s\n", in.name);	
+	}
+	fclose(db.fd);
+
+}
+
 void init_db(database db) {
-	//db.fd = fopen(DB_FILE, "ab+");	
 	db.entry_num = MAX_ENTRIES;
 	db.buf = malloc(sizeof(entry) * db.entry_num);
 		
-
-
 }
 
