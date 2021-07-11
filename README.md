@@ -1,6 +1,6 @@
 # knotebook
 
-Program that will be used to store throwaway-code for kata exercises/ideas.
+Program that will be used to store throwaway-code for kata exercises/ideas. Programs are stored with the name and programming language.
 
 ## Usage
 
