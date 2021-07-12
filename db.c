@@ -19,6 +19,8 @@ void read_db(database db) {
 	db.fd = fopen(DB_FILE, "rb");
 	while(fread(&in, sizeof(entry), 1, db.fd)) {
 		printf("%s\n", in.name);	
+		printf("%s\n", in.language);
+		printf("%s\n", in.code);
 	}
 	fclose(db.fd);
 

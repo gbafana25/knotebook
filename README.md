@@ -11,4 +11,4 @@ With curl:
 - [x] async server base
 - [x] parser that can parse url-format variables, get correct parameters and code
 - [x] store data in binary form
-- [ ] make data easier to query (idk how)
+- [ ] make data easier to query 
