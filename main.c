@@ -60,6 +60,7 @@ int main() {
 						entry *e = parse_request(buffer);
 						write_db(store, e);
 						read_db(store);
+						//free(&store.buf);
 					
 					}
 					memset(&buffer, 0, sizeof(buffer));

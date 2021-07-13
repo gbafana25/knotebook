@@ -28,7 +28,6 @@ void read_db(database db) {
 
 void init_db(database db) {
 	db.entry_num = MAX_ENTRIES;
-	db.buf = malloc(sizeof(entry) * db.entry_num);
 		
 }
 

@@ -8,8 +8,9 @@ With curl:
 	- `curl -X POST --data 'name=[program_name]&lang=[language]&code='"$(cat [filename])"'' localhost:1234/create`
 
 ## Tasks
-- [x] async server base
-- [x] parser that can parse url-format variables, get correct parameters and code
-- [x] store data in binary form
-- [x] create client program for creating entries
+- [ ] fix parser to read code and ignore `&` (in languages like c/c++)
 - [ ] make data easier to query 
+- [x] ~~async server base~~
+- [x] ~~parser that can parse url-format variables, get correct parameters and code~~
+- [x] ~~store data in binary form~~
+- [x] ~~create client program for creating entries~~
